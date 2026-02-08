@@ -1,5 +1,6 @@
 # StrangerThings_Rules.github.io
 Follow the link to learn the rules of the Stranger Things game
+
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
