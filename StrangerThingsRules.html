@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Путеводитель по игре "Stranger Things: Скрытая угроза"</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body {
+            background-color: #0a0a1a;
+            color: #e0e0ff;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        /* Стили для обложки */
+        .cover {
+            width: 800px;
+            height: 1000px;
+            margin: 0 auto 50px;
+            background: linear-gradient(135deg, #1a0a2a 0%, #0d1b2a 50%, #001524 100%);
+            border: 3px solid #8a2be2;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(138, 43, 226, 0.5);
+            padding: 30px;
+        }
+        
+        .cover::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 0, 0, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 20%);
+            z-index: 1;
+        }
+        
+        .cover-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .cover-header {
+            text-align: center;
+            border-bottom: 2px solid #ff003c;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-family: 'Arial Black', sans-serif;
+            font-size: 72px;
+            color: #ff003c;
+            text-shadow: 0 0 15px #ff003c, 0 0 25px #ff003c;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .subtitle {
+            font-size: 28px;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .game-title {
+            font-size: 48px;
+            color: #ffffff;
+            text-shadow: 0 0 10px #ffffff;
+            margin: 30px 0;
+            text-align: center;
+            border: 1px solid #8a2be2;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+        }
+        
+        .cover-image {
+            flex-grow: 1;
+            background: linear-gradient(to bottom, transparent 30%, #0a0a1a 100%),
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><path d="M50,150 Q200,50 350,150" stroke="%238a2be2" stroke-width="2" fill="none"/><circle cx="200" cy="150" r="20" fill="%2300ffff" opacity="0.7"/><path d="M100,100 L120,80 L140,120 L160,70 L180,130 L200,50 L220,150 L240,90 L260,140 L280,100 L300,130" stroke="%23ff003c" stroke-width="2" fill="none"/></svg>');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 20px 0;
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
+        
+        .cover-footer {
+            text-align: center;
+            border-top: 2px solid #00ffff;
+            padding-top: 20px;
+            font-size: 20px;
+            color: #aaaaff;
+        }
+        
+        /* Стили для содержания */
+        .content {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            background-color: rgba(10, 15, 30, 0.9);
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+        
+        h1, h2, h3 {
+            color: #00ffff;
+            margin: 25px 0 15px;
+            text-shadow: 0 0 5px #00ffff;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            border-bottom: 2px solid #ff003c;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #ff9966;
+            font-size: 28px;
+            border-left: 4px solid #ff9966;
+            padding-left: 10px;
+            margin-top: 40px;
+        }
+        
+        h3 {
+            color: #aaaaff;
+            font-size: 22px;
+            margin-top: 25px;
+        }
+        
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .note {
+            background-color: rgba(255, 0, 60, 0.1);
+            border-left: 4px solid #ff003c;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .example {
+            background-color: rgba(0, 255, 255, 0.1);
+            border: 1px solid #00ffff;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-style: italic;
+        }
+        
+        /* Стили для завершения */
+        .conclusion {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: rgba(20, 10, 40, 0.9);
+            border: 2px solid #8a2be2;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+        }
+        
+        .conclusion h2 {
+            color: #ffcc00;
+            border: none;
+            font-size: 32px;
+            text-shadow: 0 0 10px #ffcc00;
+        }
+        
+        .conclusion p {
+            font-size: 20px;
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+        
+        .signature {
+            font-family: cursive;
+            font-size: 24px;
+            color: #00ffff;
+            margin-top: 40px;
+            text-shadow: 0 0 5px #00ffff;
+        }
+        
+        .stranger-things-logo {
+            font-family: 'Arial Black', sans-serif;
+            font-size: 28px;
+            color: #ff003c;
+            letter-spacing: 3px;
+            margin-top: 30px;
+            text-shadow: 0 0 10px #ff003c;
+        }
+        
+        /* Эффект мигающих огней */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .blink {
+            animation: blink 2s infinite;
+        }
+        
+        /* Эффект свечения текста */
+        .glow {
+            text-shadow: 0 0 10px currentColor;
+        }
+    </style>
+</head>
+<body>
+    <!-- Обложка -->
+    <div class="cover">
+        <div class="cover-content">
+            <div class="cover-header">
+                <div class="logo blink">Stranger Things</div>
+                <div class="subtitle">Официальный путеводитель</div>
+            </div>
+            
+            <div class="game-title">НАСТОЛЬНАЯ КАРТОЧНАЯ ИГРА<br>«СКРЫТАЯ УГРОЗА»</div>
+            
+            <div class="cover-image"></div>
+            
+            <div class="cover-footer">
+                <div>Руководство по тактике и стратегии</div>
+                <div>Для 2-4 исследователей Хоукинса</div>
+                <div style="margin-top: 10px; font-size: 16px; color: #888;">ВНИМАНИЕ: СОДЕРЖИТ СПОЙЛЕРЫ И СЕКРЕТНЫЕ МАТЕРИАЛЫ</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Содержание -->
+    <div class="content">
+        <h1>СОДЕРЖАНИЕ</h1>
+        
+        <h2>ВВЕДЕНИЕ: МИР НАИЗНАНКУ</h2>
+        <ul>
+            <li>Добро пожаловать в Хоукинс</li>
+            <li>Основные концепции игры</li>
+            <li>Компоненты и их обозначения</li>
+        </ul>
+        
+        <h2>ГЛАВА 1: ПОДГОТОВКА К ИГРЕ</h2>
+        <ol>
+            <li>Формирование колод: Герои, Баффы, Локации</li>
+            <li>Спецкарты и их добавление в колоду Баффов</li>
+            <li>Начальная раздача: получение 5 карт на руку</li>
+            <li>Особенности набора руки из разных колод</li>
+            <li>Размещение колоды Локаций и открытие первого задания</li>
+        </ol>
+        
+        <h2>ГЛАВА 2: ХОД ИГРЫ</h2>
+        <h3>А. Обязательная фаза: Действие с Героем</h3>
+        <ul>
+            <li>Нанять Героя: формирование своей команды (до 3 Героев)</li>
+            <li>Отправить на задание: тактика объявления силы</li>
+            <li>Отозвать Героя: стратегический отзыв для освобождения места</li>
+        </ul>
+        
+        <h3>Б. Необязательная фаза: Разыграть карты</h3>
+        <ul>
+            <li>Использование карт Баффов (включая Спецкарты)</li>
+            <li>Активация Особых способностей Героев</li>
+            <li>Тактика применения отрицательных Баффов</li>
+            <li>Ограничения и возможности игры картами</li>
+        </ul>
+        
+        <h3>В. Завершение Локации</h3>
+        <ul>
+            <li>Механика достижения Порога</li>
+            <li>Бонус +1 очко влияния для закрывающего Порог</li>
+            <li>Распределение награды пропорционально вкладу</li>
+            <li>Сброс карт с Локации и открытие следующей</li>
+            <li>Добор карт до 5 на руку</li>
+        </ul>
+        
+        <h2>ГЛАВА 3: ОСОБЫЕ ПРАВИЛА И ВЗАИМОДЕЙСТВИЯ</h2>
+        <ul>
+            <li>Плохие Герои: механика отрицательной силы</li>
+            <li>Тактика диверсии и срыва заданий</li>
+            <li>Инверсия силы Плохих Героев</li>
+            <li>Статус "Занятости" Героя и его implications</li>
+            <li>Перетасовка сброса: управление колодами</li>
+        </ul>
+        
+        <h2>ГЛАВА 4: КОНЕЦ ИГРЫ И ПОДСЧЕТ ОЧКОВ</h2>
+        <ul>
+            <li>Условия окончания игры</li>
+            <li>Подсчет очков влияния за выполненные Локации</li>
+            <li>Бонусные очки от карт Героев и Баффов</li>
+            <li>Определение победителя: Верховный Покровитель</li>
+        </ul>
+        
+        <h2>ПРИЛОЖЕНИЯ</h2>
+        <ul>
+            <li>Каталог карт Героев (Хорошие и Плохие)</li>
+            <li>Каталог карт Баффов и Спецкарт</li>
+            <li>Каталог Локаций Хоукинса</li>
+            <li>Стратегические рекомендации для новичков</li>
+            <li>Расширенные тактики для опытных игроков</li>
+        </ul>
+    </div>
+    
+    <!-- Завершение книги -->
+    <div class="conclusion">
+        <h2 class="glow">ИГРА ЗАВЕРШЕНА. НАЧИНАЕТСЯ ЛЕГЕНДА.</h2>
+        
+        <p>Поздравляем! Вы прошли через все испытания Хоукинса, от противостояния с Демогоргоном до исследования русской лаборатории. Каждая сыгранная партия — это новая история, новый поворот сюжета в саге о вашей группе исследователей.</p>
+        
+        <p>Помните: в мире «Stranger Things» настоящая победа — не только в звании <strong>Верховного Покровителя</strong>, но и в том, чтобы ваша дружба выдержала испытание силами Наизнанку. Иногда нужно объединиться против общей угрозы, а иногда — проявить хитрость, чтобы опередить других.</p>
+        
+        <div class="note" style="text-align: left; margin: 30px 0;">
+            <strong>СОВЕТ ОТ СОЗДАТЕЛЕЙ:</strong> Наилучшие партии получаются тогда, когда вы полностью погружаетесь в атмосферу. Включите саундтрек из сериала, приглушите свет, и пусть каждый ход будет жестом отчаяния или триумфа ваших героев.
+        </div>
+        
+        <p>Спасибо, что выбрали нашу игру. Ваше путешествие в Упсайд Даун только началось. Следите за огоньками на стене, прислушивайтесь к странным звукам из стен, и всегда держите под рукой валерьянку и вафли «Eggo».</p>
+        
+        <p class="signature">С наилучшими пожеланиями,<br>Команда разработчиков «Скрытой угрозы»</p>
+        
+        <div class="stranger-things-logo blink">
+            STRANGER THINGS
+        </div>
+        
+        <p style="margin-top: 30px; font-size: 16px; color: #aaa;">
+            © Вселенная Stranger Things. Данное руководство является фанатским проектом.<br>
+            Игра предназначена для домашнего использования. Не оставляйте играющих детей без присмотра.<br>
+            При возникновении странных явлений в вашем доме после игры — свяжитесь с Хоппером.
+        </p>
+    </div>
+    
+    <script>
+        // Добавляем эффект мигания для элементов с классом blink
+        document.addEventListener('DOMContentLoaded', function() {
+            const blinkElements = document.querySelectorAll('.blink');
+            
+            // Случайная задержка для каждого мигающего элемента
+            blinkElements.forEach((element, index) => {
+                const delay = index * 0.3;
+                element.style.animationDelay = `${delay}s`;
+            });
+            
+            // Эффект параллакса для обложки при движении мыши
+            const cover = document.querySelector('.cover');
+            if (cover) {
+                document.addEventListener('mousemove', (e) => {
+                    const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+                    const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+                    
+                    cover.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+                });
+                
+                // Сброс при уходе мыши
+                document.addEventListener('mouseleave', () => {
+                    cover.style.transform = 'rotateY(0deg) rotateX(0deg)';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
